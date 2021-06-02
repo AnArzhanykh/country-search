@@ -1,6 +1,5 @@
 import ListCountries from '../template/ListCountries'
 import SearchCountry from '../template/searchCountry'
-import refInputSearch from '../index.js'
 
 
 
@@ -9,32 +8,45 @@ import"@pnotify/core/dist/PNotify.css";
 import"@pnotify/core/dist/BrightTheme.css";
 
 
-
+const countryContainerRef = document.querySelector('.country');
 
 export default function renderCountry(country){
 
-    const countryContainerRef = document.querySelector('.country');
-
-    while (countryContainerRef.firstChild) {
-        countryContainerRef.removeChild(countryContainerRef.firstChild);
-    }
+    clear()
 
     country.then(arr =>{
         console.log(arr);
         if(arr.length > 10){
-            const myError = error({
-                text:'Too many matches found. Please enter a more specific quary!'
-            });
+            renderAlert()
         } 
         if( 1 < arr.length && arr.length <= 10) {
-            const markup = ListCountries(arr)
-            countryContainerRef.insertAdjacentHTML('beforeend', markup);
+            renderListCountries(arr)         
         }
         if(arr.length === 1){
-            const markup = SearchCountry(arr)
-            countryContainerRef.insertAdjacentHTML('beforeend', markup);
-            refInputSearch.value = ''
+            renderSearchCountry(arr)
         }
     });
     
 }  
+
+
+function clear(){
+    countryContainerRef.innerHTML = '';
+}
+
+function renderAlert(){
+    const myError = error({
+        text:'Too many matches found. Please enter a more specific quary!'
+    });
+}
+
+function renderListCountries(arr){
+    const markup = ListCountries(arr)
+    countryContainerRef.insertAdjacentHTML('beforeend', markup);
+}
+
+function renderSearchCountry(arr){
+    const markup = SearchCountry(arr)
+    countryContainerRef.innerHTML = markup;
+
+}
