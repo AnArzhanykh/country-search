@@ -1,11 +1,11 @@
 import ListCountries from '../template/ListCountries'
 import SearchCountry from '../template/searchCountry'
 
-
-
 import { alert, notice, info, success, error, defaultModules } from'@pnotify/core';
 import"@pnotify/core/dist/PNotify.css";
 import"@pnotify/core/dist/BrightTheme.css";
+
+import refInputSearch from '../index.js'
 
 
 const countryContainerRef = document.querySelector('.country');
@@ -15,15 +15,23 @@ export default function renderCountry(country){
     clear()
 
     country.then(arr =>{
-        console.log(arr);
         if(arr.length > 10){
             renderAlert()
         } 
         if( 1 < arr.length && arr.length <= 10) {
-            renderListCountries(arr)         
+            const countryOne = arr.find(element => element.name.toLowerCase() === refInputSearch.value.toLowerCase());
+            if(countryOne){
+                renderSearchCountry([countryOne])
+            } else {
+            console.log(arr);
+            renderListCountries(arr)
+            }
+
+
         }
         if(arr.length === 1){
             renderSearchCountry(arr)
+            console.log(arr);
         }
     });
     
