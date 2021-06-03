@@ -8,11 +8,13 @@ let refInputSearch = document.querySelector('.search-country');
 refInputSearch.addEventListener('input', debounce(changeSearch, 500));
 
 function changeSearch(){
+
     const searchQuery = refInputSearch.value;
-    if(searchQuery === ' '){
-        return
-    }
+
+    if(searchQuery === ' ' || searchQuery === '') return;
+
     const searchCountry = fetchCountries(searchQuery);
+    
     renderCountry(searchCountry);
 }
 
