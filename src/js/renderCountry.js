@@ -1,5 +1,5 @@
-import ListCountries from '../template/ListCountries'
-import SearchCountry from '../template/searchCountry'
+import ListCountries from '../template/ListCountries';
+import SearchCountry from '../template/searchCountry';
 import fetchCountries from './fetchCountries';
 
 import { alert, notice, info, success, error, defaultModules } from'@pnotify/core';
