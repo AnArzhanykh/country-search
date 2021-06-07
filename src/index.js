@@ -1,23 +1,23 @@
 import './sass/main.scss';
-import fetchCountries from './js/fetchCountries';
+
 import renderCountry from './js/renderCountry';
 var debounce = require('lodash.debounce');
 
 let refInputSearch = document.querySelector('.search-country');
 
-refInputSearch.addEventListener('input', debounce(changeSearch, 500));
+const debouncedInput = debounce(changeSearch, 500)
 
-function changeSearch(){
+refInputSearch.addEventListener('input', debouncedInput);
 
-    const searchQuery = refInputSearch.value;
+function changeSearch(e){
+
+    const searchQuery = e.target.value;
 
     if(searchQuery === ' ' || searchQuery === '') return;
-
-    const searchCountry = fetchCountries(searchQuery);
     
-    renderCountry(searchCountry);
+    renderCountry(searchQuery);
+
 }
 
 
-export default refInputSearch;
 
