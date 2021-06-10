@@ -1,6 +1,6 @@
 import './sass/main.scss';
 
-import renderCountry from './js/renderCountry';
+import filterCountries from './js/renderCountry';
 var debounce = require('lodash.debounce');
 
 let refInputSearch = document.querySelector('.search-country');
@@ -15,7 +15,7 @@ function changeSearch(e){
 
     if(searchQuery === ' ' || searchQuery === '') return;
     
-    renderCountry(searchQuery);
+    filterCountries(searchQuery);
 
 }
 

@@ -1,5 +1,5 @@
-import ListCountries from '../template/ListCountries';
-import SearchCountry from '../template/searchCountry';
+import ListCountries from './../template/ListCountries';
+import SearchCountry from './../template/searchCountry';
 import fetchCountries from './fetchCountries';
 
 import { alert, notice, info, success, error, defaultModules } from'@pnotify/core';
@@ -15,7 +15,7 @@ const messageAlert = {
     
 }
 
-export default function renderCountry(query){
+export default function filterCountries(query){
     clear();
 
     fetchCountries(query).then(arr =>{
@@ -29,14 +29,14 @@ export default function renderCountry(query){
         if( 1 < arr.length && arr.length <= 10) {
             const countryOne = arr.find(element => element.name.toLowerCase() === query.toLowerCase());
             if(countryOne){
-                renderSearchCountry([countryOne])
+                render([countryOne], SearchCountry)
             } else {
             console.log(arr);
             render(arr, ListCountries)
             }
         }
         if(arr.length === 1){
-            render(arr,SearchCountry)
+            render(arr, SearchCountry)
             console.log(arr);
         }
 
