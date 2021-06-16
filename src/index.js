@@ -1,6 +1,6 @@
 import './sass/main.scss';
 
-import filterCountries from './js/renderCountry';
+import filterCountries from './js/filterCountries';
 var debounce = require('lodash.debounce');
 
 let refInputSearch = document.querySelector('.search-country');
