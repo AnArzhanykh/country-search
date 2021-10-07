@@ -16,6 +16,7 @@ function changeSearch(e){
     if(searchQuery === ' ' || searchQuery === '') return;
     
     filterCountries(searchQuery);
+    e.target.value = '';
 
 }
 

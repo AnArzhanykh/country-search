@@ -27,17 +27,16 @@ export default function filterCountries(query){
             renderAlert(messageAlert.textManyCountries)
         } 
         if( 1 < arr.length && arr.length <= 10) {
-            const countryOne = arr.find(element => element.name.toLowerCase() === query.toLowerCase());
+            const countryOne = arr.find(element => element.name.common.toLowerCase() === query.toLowerCase());
             if(countryOne){
                 render([countryOne], SearchCountry)
             } else {
-            console.log(arr);
             render(arr, ListCountries)
             }
         }
         if(arr.length === 1){
             render(arr, SearchCountry)
-            console.log(arr);
+            console.log(arr.flags);
         }
 
     }).catch(e=>console.log(e.message));
